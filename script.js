@@ -2,7 +2,9 @@ var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz".split("");
 var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numberCharacters = "123456789".split("");
 var symbolCharacters = "!@#$%^&*()=+/-".split("");
-var passwordCharacters;
+var passwordCharacters = [];
+var finalPassword = "";
+console.log(symbolCharacters);
 
 function generatePassword() {
   var passwordLength;
@@ -13,30 +15,35 @@ function generatePassword() {
 
   var includeLowercase = confirm("Password will include lowercase letters");
   if (includeLowercase == true) {
-    passwordCharacters = lowercaseCharacters + passwordCharacters;
+    passwordCharacters = passwordCharacters.concat(lowercaseCharacters);
+    console.log(passwordCharacters);
   }
 
   var includeUppercase = confirm("Do you want to include uppercase letters?");
   if (includeUppercase == true) {
-    passwordCharacters = uppercaseCharacters + passwordCharacters;
+    passwordCharacters = passwordCharacters.concat(uppercaseCharacters);
   }
 
   var includeNumbers = confirm("Do you want to include numbers?");
   if (includeNumbers == true) {
-    passwordCharacters = numberCharacters + passwordCharacters;
+    passwordCharacters = passwordCharacters.concat(numberCharacters);
   }
 
   var includeSymbols = confirm("Do you want to include symbols?");
   if (includeSymbols == true) {
-    passwordCharacters = symbolCharacters + passwordCharacters;
+    passwordCharacters = passwordCharacters.concat(symbolCharacters);
   }
 
-  for (let i = 0; i < passwordLength - 1; i++) {
-    Math.floor(Math.random() * passwordCharacters.length);
+  for (var i = 0; i < passwordLength - 1; i++) {
+    
+    finalPassword = finalPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
   }
-  var password = passwordCharacters[i];
-  password = password + passwordCharacters[i];
+  // var password = passwordCharacters[i];
+  // password = password + passwordCharacters[i];
+  document.getElementById("password").value = finalPassword;
+  console.log(passwordCharacters);
 }
+
 
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
