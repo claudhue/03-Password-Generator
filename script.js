@@ -1,12 +1,14 @@
 var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz".split("");
 var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numberCharacters = "123456789".split("");
-var symbolCharacters = "!@#$%^&*()=+/-".split("");
+var symbolCharacters = "!@#$%^&*=+-".split("");
 var passwordCharacters = [];
 var finalPassword = "";
 console.log(symbolCharacters);
 
 function generatePassword() {
+  finalPassword = "";
+
   var passwordLength;
   do {
     passwordLength = prompt("Select a password length between 8 and 128?");
@@ -34,12 +36,10 @@ function generatePassword() {
     passwordCharacters = passwordCharacters.concat(symbolCharacters);
   }
 
-  for (var i = 0; i < passwordLength - 1; i++) {
+  for (var i = 0; i < passwordLength; i++) {
     
     finalPassword = finalPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
   }
-  // var password = passwordCharacters[i];
-  // password = password + passwordCharacters[i];
   document.getElementById("password").value = finalPassword;
   console.log(passwordCharacters);
 }
@@ -49,10 +49,3 @@ var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
 
 generateBtn.addEventListener("click", generatePassword);
-
-// Assignment Code
-// Write password to the #password input
-// Add event listener to generate button
-//if user allows uppercase
-//generate random uppercase letters
-//append some uppercase letters to the textarea (or wherever)
